@@ -41,6 +41,20 @@ h2 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+h1 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    padding: 15px;
+    margin: 20px auto;
+    border: 2px solid #007bff; /* Creates the box */
+    border-radius: 10px; /* Rounds the corners of the box */
+    background: #f9f9f9; /* Light background for the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+    max-width: 80%; /* Ensures the box is not too wide */
+}
+
+
 form {
     margin: 20px 0;
 }
