@@ -94,7 +94,7 @@ p {
     color: #444;
     font-family: 'Georgia', serif;
     line-height: 1.6; /* Improves readability */
-    text-align: justify;
+    text-align: center;
 }
 
 p:hover {
