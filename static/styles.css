@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    background: linear-gradient(to bottom, #ffffff, #f9f9f9); /* Classic gradient */
+    background: linear-gradient(to bottom, #ffffff, #a8d1e9); /* Classic gradient */
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -91,8 +91,15 @@ input, button {
 p {
     margin-top: 20px;
     font-size: 18px;
-    color: #333;
-    font-family: 'Courier New', Courier, monospace;
+    color: #444;
+    font-family: 'Georgia', serif;
+    line-height: 1.6; /* Improves readability */
+    text-align: justify;
+}
+
+p:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+    transform: translateY(-2px); /* Moves slightly upward on hover */
 }
 
 p a {

@@ -7,15 +7,21 @@
 </head>
 
 <body>
-    <div class=“container>
+    <div class="container">
         <h1>Wealth Management</h1>
-        <p class="small-text">{{r}}</p>
-        <!-- Your other HTML content goes here -->
+        <br>
+        <H2> This is the Wealth Management Landing page!
+            <br> Welcome !!
+        </H2>
+        <p> Please Enter User Name : </p>
+        <form action = "/main" method="post">
+            <p><input type = "text" name = "uname"></p>
+            <input type = "submit" value = "Enter">
+        </p>
+        </form>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </div>
-    <br>
-    <H2> This is the Wealth Management Landing page !
-        <br> Welcome !!
-    </H2>
+    
+    
 
 </body>
