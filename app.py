@@ -40,6 +40,7 @@ def gen_AI_result():
     genai.configure(api_key= api)
     model = genai.GenerativeModel("gemini-1.5-flash")
     answer= model.generate_content(ques)
+    answer = answer.text
     # from IPython.display import Markdown
     # answer = display(Markdown(response.text))
     return(render_template('Gen_AI_result.html',answer = answer))
