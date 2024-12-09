@@ -7,6 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden; /* Prevents overflow on smaller screens */
 }
 
 .container {
@@ -14,10 +15,16 @@ body {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
+    max-width: 90%; /* Allow the width to be dynamic but not larger than 90% */
+    min-width: 300px; /* Prevent the box from shrinking too small */
+    width: auto;
+    max-height: 80vh; /* Allow the container to grow in height up to 80% of the viewport height */
+    overflow-y: auto; /* Allows scrolling inside the container if content exceeds max-height */
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content from the top */
 }
 
 .image-class {
@@ -37,8 +44,8 @@ h1 {
     font-size: 32px;
     color: #333;
     text-align: center;
-    padding: 15px;
-    margin: 20px auto;
+    padding: 10px;
+    margin: 10px 0; /* Reduced margin to bring closer to surrounding content */
     border: 2px solid #007bff; /* Creates the box */
     border-radius: 10px; /* Rounds the corners of the box */
     background: linear-gradient(to right, #007bff, #004494); /* Adds blue gradient background */
@@ -50,7 +57,7 @@ h1 {
 
 h2 {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px 0; /* Reduced margin before paragraph */
     color: #333;
     font-family: 'Arial', 'Helvetica', sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -89,7 +96,7 @@ input, button {
 }
 
 p {
-    margin-top: 20px;
+    margin-top: 10px; /* Reduced the margin-top to reduce space between paragraphs */
     font-size: 18px;
     color: #444;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -116,6 +123,8 @@ p a:hover {
 @media (max-width: 768px) {
     .container {
         padding: 20px;
+        max-width: 90%; /* Allow full width on smaller screens */
+        margin: 0 10px; /* Avoid container touching the screen edges */
     }
 
     h2 {

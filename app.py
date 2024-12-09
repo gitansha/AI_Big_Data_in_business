@@ -3,8 +3,12 @@ from flask import render_template, request
 import textblob
 import google.generativeai as genai
 import os
+import markdown
+import re
 
-api = os.getenv("makersuite")
+
+# api = os.getenv("makersuite")
+api = 'AIzaSyCCXOIplLPvb7lvtigD68LNXgRdKUXXjso'
 
 app = Flask(__name__)
 
@@ -40,9 +44,8 @@ def gen_AI_result():
     genai.configure(api_key= api)
     model = genai.GenerativeModel("gemini-1.5-flash")
     answer= model.generate_content(ques)
-    answer = answer.text
-    # from IPython.display import Markdown
-    # answer = display(Markdown(response.text))
+    answer = markdown.markdown(answer.text)
+    answer = re.sub(r'<.*?>', '', answer)
     return(render_template('Gen_AI_result.html',answer = answer))
 
 

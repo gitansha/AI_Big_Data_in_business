@@ -8,7 +8,20 @@
 
 <body>
     <div class="container">
-            <h2>Sentiment Score {{r}}</h2>
+            <h2>Sentiment Score </h2>
+            <div> <p></p><b>Polarity</b>: Polarity measures the sentiment expressed in the text.<br>
+                Range:<br>
+                -1: Extremely negative sentiment.<br>
+                0: Neutral sentiment.<br>
+                +1: Extremely positive sentiment<br>
+                
+                
+                
+                <b>Subjectivity</b>: Subjectivity measures how personal or opinionated the text is.<br>
+                Range:<br>
+                0: Objective (factual statements).<br>
+                1: Highly subjective (opinion-based statements).<br></p></div>
+            <h2> {{r}}</h2>
             <form action = "/main" method="post">
                 <p><input type = "submit" value = "Main"></p>
             </form>
