@@ -52,7 +52,7 @@ h2 {
     font-size: 28px;
     margin-bottom: 20px;
     color: #333;
-    font-family: 'Georgia', serif;
+    font-family: 'Arial', 'Helvetica', sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -92,14 +92,14 @@ p {
     margin-top: 20px;
     font-size: 18px;
     color: #444;
-    font-family: 'Georgia', serif;
-    line-height: 1.6; /* Improves readability */
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.6; 
     text-align: center;
 }
 
 p:hover {
-    background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
-    transform: translateY(-2px); /* Moves slightly upward on hover */
+    background-color: rgba(0, 123, 255, 0.1); 
+    transform: translateY(-2px);
 }
 
 p a {
