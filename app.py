@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template, request
+import textblob
 
 app = Flask(__name__)
 
@@ -21,9 +22,9 @@ def sa():
 @app.route('/SA_result',methods=['GET','POST'])
 def sa_result():
     q = request.form.get("q")
-    r = 
+    r = textblob.TextBlob(q).sentiment
 
-    return(render_template('sa_rwsult.html'))
+    return(render_template('SA_result.html',r=r))
 
 
 
