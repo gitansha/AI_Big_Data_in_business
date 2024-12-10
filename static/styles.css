@@ -1,30 +1,30 @@
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #d2f2ff, #76aae2); /* Soft gradient */
+    background: linear-gradient(to right, #d2f2ff, #76aae2); 
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden; /* Prevents overflow on smaller screens */
+    overflow: hidden; 
 }
 
 .container {
-    background: linear-gradient(to bottom, #ffffff, #a8d1e9); /* Classic gradient */
+    background: linear-gradient(to bottom, #ffffff, #a8d1e9); 
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    max-width: 90%; /* Allow the width to be dynamic but not larger than 90% */
-    min-width: 300px; /* Prevent the box from shrinking too small */
+    max-width: 90%; 
+    min-width: 300px; 
     width: auto;
-    max-height: 80vh; /* Allow the container to grow in height up to 80% of the viewport height */
-    overflow-y: auto; /* Allows scrolling inside the container if content exceeds max-height */
+    max-height: 80vh; 
+    overflow-y: auto; 
     text-align: center;
     animation: fadeIn 1s ease-in-out;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content from the top */
+    justify-content: flex-start; 
 }
 
 .image-class {
@@ -45,19 +45,21 @@ h1 {
     color: #333;
     text-align: center;
     padding: 10px;
-    margin: 10px 0; /* Reduced margin to bring closer to surrounding content */
-    border: 2px solid #007bff; /* Creates the box */
-    border-radius: 10px; /* Rounds the corners of the box */
-    background: linear-gradient(to right, #007bff, #004494); /* Adds blue gradient background */
-    color: #ffffff; /* White text for contrast */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    margin: 10px 0; 
+    border: 2px solid #007bff;
+    border-radius: 10px; 
+    background: linear-gradient(to right, #007bff, #004494); 
+    color: #ffffff; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
     max-width: 80%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h2 {
     font-size: 28px;
-    margin: 10px 0 20px 0; /* Reduced margin before paragraph */
+    margin: 10px 0 20px 0; 
     color: #333;
     font-family: 'Arial', 'Helvetica', sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -96,7 +98,7 @@ input, button {
 }
 
 p {
-    margin-top: 10px; /* Reduced the margin-top to reduce space between paragraphs */
+    margin-top: 10px; 
     font-size: 18px;
     color: #444;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -120,11 +122,36 @@ p a:hover {
     color: #0056b3;
 }
 
+.left-align {
+    margin-top: 10px; 
+    font-size: 18px;
+    color: #444;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.6; 
+    text-align: left; /* Align text to the left */
+}
+
+.left-align:hover {
+    background-color: rgba(0, 123, 255, 0.1); 
+    transform: translateY(-2px);
+}
+
+.left-align a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.left-align a:hover {
+    color: #0056b3;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;
-        max-width: 90%; /* Allow full width on smaller screens */
-        margin: 0 10px; /* Avoid container touching the screen edges */
+        max-width: 90%; 
+        margin: 0 10px; 
     }
 
     h2 {

@@ -7,7 +7,7 @@ import markdown
 import re
 
 
-# api = os.getenv("makersuite")
+api = os.getenv("makersuite")
 api = 'AIzaSyCCXOIplLPvb7lvtigD68LNXgRdKUXXjso'
 
 app = Flask(__name__)
@@ -31,8 +31,10 @@ def sa():
 def sa_result():
     q = request.form.get("q")
     r = textblob.TextBlob(q).sentiment
+    polarity = r.polarity
+    subjectivity = r.subjectivity
 
-    return(render_template('SA_result.html',r=r))
+    return(render_template('SA_result.html',polarity = polarity, subjectivity = subjectivity, q = q))
 
 @app.route("/Gen_AI", methods=['GET','POST'] )
 def gen_AI():

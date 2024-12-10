@@ -9,8 +9,8 @@
 <body>
     <div class="container">
             <h2>Sentiment Score </h2>
-            <div> <p></p><b>Polarity</b>: Polarity measures the sentiment expressed in the text.<br>
-                Range:<br>
+            <div > <p class="left-align"><b>Polarity</b>: Polarity measures the sentiment expressed in the text.<br>
+                <u>Range:</u><br>
                 -1: Extremely negative sentiment.<br>
                 0: Neutral sentiment.<br>
                 +1: Extremely positive sentiment<br>
@@ -18,10 +18,13 @@
                 
                 
                 <b>Subjectivity</b>: Subjectivity measures how personal or opinionated the text is.<br>
-                Range:<br>
+                <u>Range:</u><br>
                 0: Objective (factual statements).<br>
                 1: Highly subjective (opinion-based statements).<br></p></div>
-            <h2> {{r}}</h2>
+
+            <h2 class="left-align" ><b> The line "{{q}}" has</h2> </p>
+            <h2> Polarity = {{polarity}}</h2>
+            <h2>Subjectivity = {{subjectivity}}</h2>
             <form action = "/main" method="post">
                 <p><input type = "submit" value = "Main"></p>
             </form>
