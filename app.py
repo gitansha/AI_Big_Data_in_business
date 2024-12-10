@@ -8,7 +8,7 @@ import re
 
 
 api = os.getenv("makersuite")
-api = 'AIzaSyCCXOIplLPvb7lvtigD68LNXgRdKUXXjso'
+# api = 'AIzaSyCCXOIplLPvb7lvtigD68LNXgRdKUXXjso'
 
 app = Flask(__name__)
 
