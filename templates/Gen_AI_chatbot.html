@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.10/lib/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Makersuite Answered</h2>
+
+    
+        <p class="left-align">{{ answer }}</p>
+
+        <form action="/main" method="post">
+            <input type="submit" value="Main">
+        </form>
+    </div>
+</body>
+</html>

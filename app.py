@@ -7,8 +7,8 @@ import markdown
 import re
 
 
-api = os.getenv("makersuite")
-# api = 'AIzaSyCCXOIplLPvb7lvtigD68LNXgRdKUXXjso'
+# api = os.getenv("makersuite")
+api = 'AIzaSyCCXOIplLPvb7lvtigD68LNXgRdKUXXjso'
 
 app = Flask(__name__)
 
@@ -49,6 +49,18 @@ def gen_AI_result():
     answer = markdown.markdown(answer.text)
     answer = re.sub(r'<.*?>', '', answer)
     return(render_template('Gen_AI_result.html',answer = answer))
+
+@app.route('/Gen_AI_chatbot',methods=['GET','POST'])
+def gen_AI_chatbot():
+    
+    ques = request.form.get("response")
+    genai.configure(api_key= api)
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    chat = model.start_chat(history=[])
+    answer= chat.send_message(ques)
+    answer = markdown.markdown(answer.text)
+    answer = re.sub(r'<.*?>', '', answer)
+    return(render_template('Gen_AI_chatbot.html',answer = answer))
 
 
 
