@@ -3,21 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Example</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.10/lib/marked.min.js"></script>
+    <title>AI Chatbot</title>
+    <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            padding: 8px 16px;
+            background: #ffffff33;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .user-message .message-content {
+            background: #007bff;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message .message-content {
+            background: #e9ecef;
+            color: black;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #dee2e6;
+            background: white;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .input-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .send-button {
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .send-button:hover {
+            background: #0056b3;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 16px;
+            background: #e9ecef;
+            border-radius: 15px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="container">
-        <h2>Makersuite Answered</h2>
-
-    
-        <p class="left-align">{{ answer }}</p>
-
-        <form action="/main" method="post">
-            <input type="submit" value="Main">
-        </form>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>AI Chatbot</h2>
+            <form action="/" method="get">
+                <button type="submit" class="back-button">Back to Main</button>
+            </form>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! How can I help you today?
+                </div>
+            </div>
+            {% if initial_message %}
+            <div class="message user-message">
+                <div class="message-content">
+                    {{ initial_message }}
+                </div>
+            </div>
+            {% endif %}
+            {% if initial_response %}
+            <div class="message bot-message">
+                <div class="message-content">
+                    {{ initial_response }}
+                </div>
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="message bot-message">
+                <div class="message-content">
+                    Error: {{ error }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            AI is thinking...
+        </div>
+        <div class="chat-input">
+            <form class="input-form" id="chat-form">
+                <input type="text" name="response" class="message-input" placeholder="Type your message..." required>
+                <button type="submit" class="send-button">Send</button>
+            </form>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const input = this.querySelector('input[name="response"]');
+            const message = input.value;
+            
+            // Add user message to chat
+            addMessage(message, 'user');
+            
+            // Clear input
+            input.value = '';
+            
+            // Show typing indicator
+            document.getElementById('typing-indicator').style.display = 'block';
+            
+            try {
+                const response = await fetch('/chat_message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `response=${encodeURIComponent(message)}`
+                });
+                
+                const data = await response.json();
+                
+                // Hide typing indicator
+                document.getElementById('typing-indicator').style.display = 'none';
+                
+                // Add bot response to chat
+                addMessage(data.answer, 'bot');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('typing-indicator').style.display = 'none';
+                addMessage('Sorry, something went wrong. Please try again.', 'bot');
+            }
+        });
+
+        function addMessage(message, type) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.textContent = message;
+            
+            messageDiv.appendChild(contentDiv);
+            messagesDiv.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
 </body>
 </html>

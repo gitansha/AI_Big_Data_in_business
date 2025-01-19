@@ -8,20 +8,30 @@
 
 <body>
     <div class="container">
-        <h1>Gen AI </h1>
+        <h1>Gen AI</h1>
         <br>
-        <p> Please Enter your question here : </p>
-        <form action = "/Gen_AI_result" method="post">
-            <p><input type = "text" name = "response"></p>
-            <input type = "Submit" value = "Get Response">
-        </p>
-        </form>
-        <!-- <form action = "/Gen_AI_chatbot" method = "post">
-            <input type = "Submit" value = "Start Chat">
-        </form> -->
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <p>Please Enter your question here:</p>
+        <div class="input-container">
+            <input type="text" id="shared-input" name="response" placeholder="Type your question here">
+        </div>
+        <div class="button-container">
+            <form action="/Gen_AI_result" method="post">
+                <input type="hidden" name="response" id="result-input">
+                <input type="submit" value="Get Response" onclick="copyInput('result-input')">
+            </form>
+            <form action="/Gen_AI_chatbot" method="post" >
+                <input type="hidden" name="response" id="chat-input">
+                <input type="submit" value="Start Chat" onclick="copyInput('chat-input')">
+            </form>
+        </div>
     </div>
-    
-    
 
+    <script>
+        function copyInput(targetId) {
+            const sharedInput = document.getElementById('shared-input');
+            const targetInput = document.getElementById(targetId);
+            targetInput.value = sharedInput.value;
+        }
+    </script>
 </body>
+</html>
