@@ -112,7 +112,9 @@ def chat_message():
     except Exception as e:
         return jsonify({'answer': f"Error: {str(e)}"})
 
-
+@app.route("/paynow", methods=['GET','POST'] )
+def paynow():
+    return(render_template('paynow.html'))
 
 
 if __name__ == "__main__":
